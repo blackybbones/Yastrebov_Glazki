@@ -23,10 +23,6 @@
                     <TextBlock>Сортировка</TextBlock>
                     <TextBlock>Наименование по возрастанию</TextBlock>
                     <TextBlock>Наименование по убыванию</TextBlock>
-                    <TextBlock>Почта по возрастанию</TextBlock>
-                    <TextBlock>Почта по убыванию</TextBlock>
-                    <TextBlock>Номер по возрастанию</TextBlock>
-                    <TextBlock>Номер по убыванию</TextBlock>
                     <TextBlock>Приоритет по возрастанию</TextBlock>
                     <TextBlock>Приоритет по убыванию</TextBlock>
                 </ComboBox>
@@ -72,7 +68,6 @@
                             <TextBlock Text="{Binding AgentType.Title, StringFormat={}{0}|}" HorizontalAlignment="Left" FontSize="20" ></TextBlock>
                             <TextBlock Text="{Binding Title}" HorizontalAlignment="Right" FontSize="20" ></TextBlock>
                         </StackPanel>
-                        
                         <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                         <TextBlock Text="{Binding Priority, StringFormat={}Приоритетность: {0}}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                     </Grid>

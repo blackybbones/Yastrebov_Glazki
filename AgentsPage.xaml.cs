@@ -35,7 +35,9 @@ namespace Yastrebov_Glazki
         {
             var currentAgents = Yastrebov_GlazkiSaveEntities.GetContext().Agent.ToList();
 
-            currentAgents = currentAgents.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            currentAgents = currentAgents.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.Phone.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.Email.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+
+
 
             AgentsListView.ItemsSource = currentAgents.ToList();
 
@@ -81,30 +83,10 @@ namespace Yastrebov_Glazki
 
             if (ComboType.SelectedIndex == 3)
             {
-                AgentsListView.ItemsSource = currentAgents.OrderBy(p => p.Email).ToList();
-            }
-
-            if (ComboType.SelectedIndex == 4)
-            {
-                AgentsListView.ItemsSource = currentAgents.OrderByDescending(p => p.Email).ToList();
-            }
-
-            if (ComboType.SelectedIndex == 5)
-            {
-                AgentsListView.ItemsSource = currentAgents.OrderBy(p => p.Phone).ToList();
-            }
-
-            if (ComboType.SelectedIndex == 6)
-            {
-                AgentsListView.ItemsSource = currentAgents.OrderByDescending(p => p.Phone).ToList();
-            }
-
-            if (ComboType.SelectedIndex == 7)
-            {
                 AgentsListView.ItemsSource = currentAgents.OrderBy(p => p.Priority).ToList();
             }
 
-            if (ComboType.SelectedIndex == 8)
+            if (ComboType.SelectedIndex == 4)
             {
                 AgentsListView.ItemsSource = currentAgents.OrderByDescending(p => p.Priority).ToList();
             }
