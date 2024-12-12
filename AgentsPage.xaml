@@ -6,20 +6,25 @@
       xmlns:local="clr-namespace:Yastrebov_Glazki"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AgentsPage" FontFamily="Century Gothic">
+      Title="AgentsPage" FontFamily="Century Gothic" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+
         </Grid.RowDefinitions>
-        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Margin="10" Orientation="Horizontal">
-                <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" Width="300" FontSize="15"></TextBox>
+                <TextBox Name="TBoxSearch" TextChanged="TBoxSerch_TextChanged"
+                         Width="300" FontSize="15"></TextBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged" FontSize="15" Width="200">
+
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged"
+                          FontSize="15" Width="200">
                     <TextBlock>Сортировка</TextBlock>
                     <TextBlock>Наименование по возрастанию</TextBlock>
                     <TextBlock>Наименование по убыванию</TextBlock>
@@ -27,14 +32,15 @@
                     <TextBlock>Приоритет по убыванию</TextBlock>
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <ComboBox Name="ComboAgentType" SelectionChanged="ComboAgentType_SelectionChanged" FontSize="15" Width="200">
-                    <TextBlock>Все типы</TextBlock>
-                    <TextBlock>МФО</TextBlock>
-                    <TextBlock>ООО</TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <ComboBox Name="ComboAgentType" SelectionChanged="ComboAgentType_SelectionChanged"
+              FontSize="15" Width="200">
+                    <TextBlock>Тип сортировки</TextBlock>
                     <TextBlock>ЗАО</TextBlock>
                     <TextBlock>МКК</TextBlock>
+                    <TextBlock>МФО</TextBlock>
                     <TextBlock>ОАО</TextBlock>
+                    <TextBlock>ООО</TextBlock>
                     <TextBlock>ПАО</TextBlock>
                 </ComboBox>
             </StackPanel>
@@ -46,33 +52,53 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Image Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center">
-                            <Image.Source>
-                                <Binding Path="MainImagePath">
+                        <Image Width=" 100"  Grid.Column=" 0" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center" >
+                            <Image.Source >
+                                <Binding Path="Logo">
                                     <Binding.TargetNullValue>
                                         <ImageSource>
-                                            png/picture.png
+                                            agents/picture.png
                                         </ImageSource>
                                     </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>
                         </Image>
+                        
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-                            <TextBlock Text="{Binding AgentType.Title, StringFormat={}{0}|}" HorizontalAlignment="Left" FontSize="20" ></TextBlock>
-                            <TextBlock Text="{Binding Title}" HorizontalAlignment="Right" FontSize="20" ></TextBlock>
+                            <TextBlock Text="{Binding AgentType.Title, StringFormat={}{0}|}" HorizontalAlignment="Left" FontSize="25"></TextBlock>
+                            <TextBlock Text="{Binding Title}"  HorizontalAlignment="Right" FontSize="25" ></TextBlock>
                         </StackPanel>
-                        <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
-                        <TextBlock Text="{Binding Priority, StringFormat={}Приоритетность: {0}}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding Phone}"    Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding Priority, StringFormat={}Приоритетность: {0}}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+                        <Button Content="Изменить" Grid.Column="1" Grid.Row="5" Name="EditButton" HorizontalAlignment="Left" Click="EditButton_Click"></Button>
+
                     </Grid>
+
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Добавить" Grid.Column="0" Grid.Row="5" Name="AddBtn" HorizontalAlignment="Center" Click="AddBtn_Click"></Button>
+            <Button Name="LeftDirButton" Content="&lt;" Width="20" Height="20"
+                    Click="LeftDirButton_Click" ></Button>
+            <ListBox FontSize="20" Name="PageListBox" MouseUp="PageListBox_MouseUp">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Button Name="RightDirButton" Content="&gt;" Width="20" Height="20"
+                    Click="RightDirButton_Click"></Button>
+        </StackPanel>
     </Grid>
 </Page>

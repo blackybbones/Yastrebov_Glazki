@@ -16,11 +16,13 @@ namespace Yastrebov_Glazki
     public partial class Yastrebov_GlazkiSaveEntities : DbContext
     {
         private static Yastrebov_GlazkiSaveEntities _context;
-
         public static Yastrebov_GlazkiSaveEntities GetContext()
         {
             if (_context == null)
+            {
                 _context = new Yastrebov_GlazkiSaveEntities();
+                
+            }
             return _context;
         }
         public Yastrebov_GlazkiSaveEntities()

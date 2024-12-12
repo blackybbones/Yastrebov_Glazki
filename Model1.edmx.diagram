@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7c6fd5c9ef524c4ab92c3bad27984184" Name="Diagram1">
+      <Diagram DiagramId="4ba9ff8b1eb24bc4aa92e860cbfc871f" Name="Diagram1">
         <EntityTypeShape EntityType="Yastrebov_GlazkiSaveModel.Agent" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Yastrebov_GlazkiSaveModel.AgentPriorityHistory" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Yastrebov_GlazkiSaveModel.AgentType" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />

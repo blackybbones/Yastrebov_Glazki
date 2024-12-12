@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yastrebov_Glazki"
         mc:Ignorable="d"
-        Title="Ястребов" Height="450" Width="800" FontFamily="Century Gothic" Icon="png/Глазки-save.ico">
+        Title="Ястребов" Height="450" Width="800" FontFamily="Century Gothic" Icon="agents/Глазки-save.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Image Source="png/Глазки-save.png" HorizontalAlignment="Left"></Image>
+        <Image Source="agents/Глазки-save.png" HorizontalAlignment="Left"></Image>
         <TextBlock Text="Агентство" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
         <Button Content="Назад" Name="BtnBack" Width="175" Height="30" HorizontalAlignment="Right" Margin="5" Click="BtnBack_Click"></Button>
