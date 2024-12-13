@@ -30,7 +30,6 @@ namespace Yastrebov_Glazki
             InitializeComponent();
             var currentAgents = Yastrebov_GlazkiSaveEntities.GetContext().Agent.ToList();
             AgentsListView.ItemsSource = currentAgents;
-            
             ComboType.SelectedIndex = 0;
             ComboAgentType.SelectedIndex = 0;
             UpdateAgents();
@@ -88,6 +87,14 @@ namespace Yastrebov_Glazki
             if (ComboType.SelectedIndex == 4)
             {
                 currentAgents = currentAgents.OrderByDescending(p => p.Priority).ToList();
+            }
+            if (ComboType.SelectedIndex == 5)
+            {
+                currentAgents = currentAgents.OrderBy(p => p.Discount).ToList();
+            }
+            if (ComboType.SelectedIndex == 6)
+            {
+                currentAgents = currentAgents.OrderByDescending(p => p.Discount).ToList();
             }
 
 

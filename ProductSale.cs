@@ -19,7 +19,18 @@ namespace Yastrebov_Glazki
         public int AgentID { get; set; }
         public System.DateTime SaleDate { get; set; }
         public int ProductCount { get; set; }
-    
+
+        public decimal Stoimost
+        {
+            get
+            {
+                decimal st = 0;
+                if (Product != null)
+                    st = Product.MinCostForAgent * ProductCount;
+                return st;
+            }
+        }
+
         public virtual Agent Agent { get; set; }
         public virtual Product Product { get; set; }
     }

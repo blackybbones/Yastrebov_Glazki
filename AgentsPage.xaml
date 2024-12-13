@@ -30,6 +30,8 @@
                     <TextBlock>Наименование по убыванию</TextBlock>
                     <TextBlock>Приоритет по возрастанию</TextBlock>
                     <TextBlock>Приоритет по убыванию</TextBlock>
+                    <TextBlock>Скидка по возрастанию</TextBlock>
+                    <TextBlock>Скидка по убыванию</TextBlock>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10" >
@@ -50,9 +52,9 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1500"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -61,7 +63,7 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Image Width=" 100"  Grid.Column=" 0" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center" >
+                        <Image Width="150"  Grid.Column=" 0" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center" >
                             <Image.Source >
                                 <Binding Path="Logo">
                                     <Binding.TargetNullValue>
@@ -72,14 +74,18 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        
+
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                             <TextBlock Text="{Binding AgentType.Title, StringFormat={}{0}|}" HorizontalAlignment="Left" FontSize="25"></TextBlock>
                             <TextBlock Text="{Binding Title}"  HorizontalAlignment="Right" FontSize="25" ></TextBlock>
                         </StackPanel>
+                        <TextBlock Text="скидка" Grid.Row="0" Grid.Column="2" FontSize="20" HorizontalAlignment="Right"></TextBlock>
+                        <TextBlock Text="{Binding Discount, StringFormat={}{0}%}" Grid.Row="1" Grid.Column="2" FontSize="20" HorizontalAlignment="Right"></TextBlock>
+                        <Button Content="Изменить" Grid.Column="2" Grid.Row="2" Name="EditButton" HorizontalAlignment="Right" Click="EditButton_Click"></Button>
                         <TextBlock Text="{Binding Phone}"    Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
-                        <TextBlock Text="{Binding Priority, StringFormat={}Приоритетность: {0}}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
-                        <Button Content="Изменить" Grid.Column="1" Grid.Row="5" Name="EditButton" HorizontalAlignment="Left" Click="EditButton_Click"></Button>
+                        <TextBlock Text="{Binding Prod, StringFormat={}Продажи за год: {0}}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+                        <TextBlock Text="{Binding Priority, StringFormat={}Приоритетность: {0}}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+                        
 
                     </Grid>
 
