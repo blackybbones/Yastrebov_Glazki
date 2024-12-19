@@ -98,7 +98,7 @@ namespace Yastrebov_Glazki
             {
                 Yastrebov_GlazkiSaveEntities.GetContext().SaveChanges();
                 MessageBox.Show("информация сохранена");
-                Manager.Mainframe.GoBack();
+                Manager.MainFrame.GoBack();
             }
 
             catch (Exception ex)
@@ -143,7 +143,7 @@ namespace Yastrebov_Glazki
                         Yastrebov_GlazkiSaveEntities.GetContext().SaveChanges();
 
                         MessageBox.Show("Информация удалена!");
-                        Manager.Mainframe.GoBack();
+                        Manager.MainFrame.GoBack();
 
                     }
                     catch (Exception ex)

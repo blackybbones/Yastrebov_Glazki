@@ -30,79 +30,9 @@ namespace Yastrebov_Glazki
             InitializeComponent();
             var currentAgents = Yastrebov_GlazkiSaveEntities.GetContext().Agent.ToList();
             AgentsListView.ItemsSource = currentAgents;
+            ComboSort.SelectedIndex = 0;
             ComboType.SelectedIndex = 0;
-            ComboAgentType.SelectedIndex = 0;
             UpdateAgents();
-        }
-
-        public void UpdateAgents()
-        {
-            var currentAgents = Yastrebov_GlazkiSaveEntities.GetContext().Agent.ToList();
-
-            currentAgents = currentAgents.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower())
-            || p.Email.ToLower().Contains(TBoxSearch.Text.ToLower())
-            || p.Phone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "").Replace("+", "").Contains(TBoxSearch.Text)).ToList();
-
-            AgentsListView.ItemsSource = currentAgents.ToList();
-
-            if (ComboAgentType.SelectedIndex == 1)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentType.Title == "ЗАО").ToList();
-            }
-            if (ComboAgentType.SelectedIndex == 2)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentType.Title == "МКК").ToList();
-            }
-            if (ComboAgentType.SelectedIndex == 3)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentType.Title == "МФО").ToList();
-            }
-            if (ComboAgentType.SelectedIndex == 4)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentType.Title == "ОАО").ToList();
-            }
-            if (ComboAgentType.SelectedIndex == 5)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentType.Title == "ООО").ToList();
-            }
-            if (ComboAgentType.SelectedIndex == 6)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentType.Title == "ПАО").ToList();
-            }
-
-            AgentsListView.ItemsSource = currentAgents.ToList();
-
-            if (ComboType.SelectedIndex == 1)
-            {
-                currentAgents = currentAgents.OrderBy(p => p.Title).ToList();
-            }
-            if (ComboType.SelectedIndex == 2)
-            {
-                currentAgents = currentAgents.OrderByDescending(p => p.Title).ToList();
-            }
-            if (ComboType.SelectedIndex == 3)
-            {
-                currentAgents = currentAgents.OrderBy(p => p.Priority).ToList();
-            }
-            if (ComboType.SelectedIndex == 4)
-            {
-                currentAgents = currentAgents.OrderByDescending(p => p.Priority).ToList();
-            }
-            if (ComboType.SelectedIndex == 5)
-            {
-                currentAgents = currentAgents.OrderBy(p => p.Discount).ToList();
-            }
-            if (ComboType.SelectedIndex == 6)
-            {
-                currentAgents = currentAgents.OrderByDescending(p => p.Discount).ToList();
-            }
-
-
-            AgentsListView.ItemsSource = currentAgents;
-
-            TableList = currentAgents;
-            ChangePage(0, 0);
-
         }
 
         private void ChangePage(int direction, int? selectedPage)
@@ -111,19 +41,13 @@ namespace Yastrebov_Glazki
             CountRecords = TableList.Count;
 
             if (CountRecords % 10 > 0)
-            {
                 CountPage = CountRecords / 10 + 1;
-            }
             else
-            {
                 CountPage = CountRecords / 10;
-            }
 
             Boolean Ifupdate = true;
 
-
             int min;
-
             if (selectedPage.HasValue)
             {
                 if (selectedPage >= 0 && selectedPage <= CountPage)
@@ -131,9 +55,7 @@ namespace Yastrebov_Glazki
                     CurrentPage = (int)selectedPage;
                     min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
                     for (int i = CurrentPage * 10; i < min; i++)
-                    {
                         CurrentPageList.Add(TableList[i]);
-                    }
                 }
             }
             else
@@ -146,15 +68,15 @@ namespace Yastrebov_Glazki
                             CurrentPage--;
                             min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
                             for (int i = CurrentPage * 10; i < min; i++)
-                            {
                                 CurrentPageList.Add(TableList[i]);
-                            }
                         }
                         else
                         {
                             Ifupdate = false;
                         }
                         break;
+
+
                     case 2:
                         if (CurrentPage < CountPage - 1)
                         {
@@ -166,20 +88,20 @@ namespace Yastrebov_Glazki
                             }
                         }
                         else
-                        {
                             Ifupdate = false;
-                        }
                         break;
                 }
             }
+
             if (Ifupdate)
             {
                 PageListBox.Items.Clear();
+
                 for (int i = 1; i <= CountPage; i++)
-                {
                     PageListBox.Items.Add(i);
-                }
+
                 PageListBox.SelectedIndex = CurrentPage;
+
 
 
                 AgentsListView.ItemsSource = CurrentPageList;
@@ -187,7 +109,66 @@ namespace Yastrebov_Glazki
             }
         }
 
-        private void TBoxSerch_TextChanged(object sender, TextChangedEventArgs e)
+        private void UpdateAgents()
+        {
+            var currentAgent = Yastrebov_GlazkiSaveEntities.GetContext().Agent.ToList();
+
+
+
+            //сортировка по типу -- ComboType
+            if (ComboType.SelectedIndex == 1)
+                currentAgent = currentAgent.Where(p => p.AgentTypeText == "МФО").ToList();
+            if (ComboType.SelectedIndex == 2)
+                currentAgent = currentAgent.Where(p => p.AgentTypeText == "ООО").ToList();
+            if (ComboType.SelectedIndex == 3)
+                currentAgent = currentAgent.Where(p => p.AgentTypeText == "ЗАО").ToList();
+            if (ComboType.SelectedIndex == 4)
+                currentAgent = currentAgent.Where(p => p.AgentTypeText == "МКК").ToList();
+            if (ComboType.SelectedIndex == 5)
+                currentAgent = currentAgent.Where(p => p.AgentTypeText == "ОАО").ToList();
+            if (ComboType.SelectedIndex == 6)
+                currentAgent = currentAgent.Where(p => p.AgentTypeText == "ПАО").ToList();
+
+            // функция для очистки строки от нежелательных символов
+            string CleanPhoneNumber(string phoneNumber)
+            {
+                return phoneNumber.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+            }
+
+            //поиск по наименованию, телефону и email????
+            currentAgent = currentAgent.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower()) ||
+            CleanPhoneNumber(p.Phone).Contains(CleanPhoneNumber(TBoxSearch.Text)) ||
+            p.Email.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            //отображение фильтра и поиска
+            AgentsListView.ItemsSource = currentAgent.ToList();
+
+            //сортировка по наименованию, скидке????, приоритету -- ComboSort
+            if (ComboSort.SelectedIndex == 1)
+                currentAgent = currentAgent.OrderBy(p => p.Title).ToList();
+            if (ComboSort.SelectedIndex == 2)
+                currentAgent = currentAgent.OrderByDescending(p => p.Title).ToList();
+            if (ComboSort.SelectedIndex == 3)
+                currentAgent = currentAgent.OrderBy(p => p.Prod).ToList();
+            if (ComboSort.SelectedIndex == 4)
+                currentAgent = currentAgent.OrderByDescending(p => p.Prod).ToList();
+            if (ComboSort.SelectedIndex == 5)
+                currentAgent = currentAgent.OrderBy(p => p.Priority).ToList();
+            if (ComboSort.SelectedIndex == 6)
+                currentAgent = currentAgent.OrderByDescending(p => p.Priority).ToList();
+
+            AgentsListView.ItemsSource = currentAgent;
+            TableList = currentAgent;
+
+            ChangePage(0, 0);
+
+        }
+
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateAgents();
+        }
+
+        private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateAgents();
         }
@@ -197,19 +178,9 @@ namespace Yastrebov_Glazki
             UpdateAgents();
         }
 
-        private void ComboAgentType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateAgents();
-        }
-
         private void LeftDirButton_Click(object sender, RoutedEventArgs e)
         {
             ChangePage(1, null);
-        }
-
-        private void RightDirButton_Click(object sender, RoutedEventArgs e)
-        {
-            ChangePage(2, null);
         }
 
         private void PageListBox_MouseUp(object sender, MouseButtonEventArgs e)
@@ -217,9 +188,14 @@ namespace Yastrebov_Glazki
             ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
         }
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
+        private void RightDirButton_Click(object sender, RoutedEventArgs e)
         {
-            Manager.Mainframe.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
+            ChangePage(2, null);
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage(null));
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -228,13 +204,49 @@ namespace Yastrebov_Glazki
             {
                 Yastrebov_GlazkiSaveEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 AgentsListView.ItemsSource = Yastrebov_GlazkiSaveEntities.GetContext().Agent.ToList();
-                UpdateAgents();
             }
+            UpdateAgents();
         }
 
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            Manager.Mainframe.Navigate(new AddEditPage(null));
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
+        }
+
+        private void AgentsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AgentsListView.SelectedItems.Count > 1)
+                ChangePriorityBtn.Visibility = Visibility.Visible;
+            else
+                ChangePriorityBtn.Visibility = Visibility.Hidden;
+        }
+
+        private void ChangePriorityBtn_Click(object sender, RoutedEventArgs e)
+        {
+            int MaxPriority = 0;
+            foreach (Agent agent in AgentsListView.SelectedItems)
+            {
+                if (agent.Priority > MaxPriority)
+                    MaxPriority = agent.Priority;
+            }
+            ChangePriorityWindow myWindow = new ChangePriorityWindow(MaxPriority);
+            myWindow.ShowDialog();
+            if (string.IsNullOrEmpty(myWindow.NewPriorityTextBox.Text))
+                MessageBox.Show("изменений не произошло");
+            else
+            {
+                int newPriority = Convert.ToInt32(myWindow.NewPriorityTextBox.Text);
+                foreach (Agent agent in AgentsListView.SelectedItems)
+                    agent.Priority = newPriority;
+                try
+                {
+                    Yastrebov_GlazkiSaveEntities.GetContext().SaveChanges();
+                    MessageBox.Show("информация сохранена");
+                    UpdateAgents();
+                }
+                catch (Exception ex)
+                { MessageBox.Show(ex.Message); }
+            }
         }
     }
 }

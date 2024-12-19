@@ -9,6 +9,6 @@ namespace Yastrebov_Glazki
 {
     internal class Manager
     {
-        public static Frame Mainframe { get; set; }
+        public static Frame MainFrame { get; set; }
     }
 }

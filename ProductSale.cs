@@ -15,11 +15,6 @@ namespace Yastrebov_Glazki
     public partial class ProductSale
     {
         public int ID { get; set; }
-        public int ProductID { get; set; }
-        public int AgentID { get; set; }
-        public System.DateTime SaleDate { get; set; }
-        public int ProductCount { get; set; }
-
         public decimal Stoimost
         {
             get
@@ -28,6 +23,17 @@ namespace Yastrebov_Glazki
                 if (Product != null)
                     st = Product.MinCostForAgent * ProductCount;
                 return st;
+            }
+        }
+        public int ProductID { get; set; }
+        public int AgentID { get; set; }
+        public System.DateTime SaleDate { get; set; }
+        public int ProductCount { get; set; }
+        public string ProductName
+        {
+            get
+            {
+                return Product.Title;
             }
         }
 

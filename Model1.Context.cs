@@ -21,7 +21,7 @@ namespace Yastrebov_Glazki
             if (_context == null)
             {
                 _context = new Yastrebov_GlazkiSaveEntities();
-                
+
             }
             return _context;
         }

@@ -24,12 +24,12 @@ namespace Yastrebov_Glazki
         {
             InitializeComponent();
             MainFrame.Navigate(new AgentsPage());
-            Manager.Mainframe = MainFrame;
+            Manager.MainFrame = MainFrame;
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            Manager.Mainframe.GoBack();
+            Manager.MainFrame.GoBack();
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)

@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddHistoryCostPage.xaml.cs">
+      <DependentUpon>AddHistoryCostPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Agent.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -72,6 +75,12 @@
     </Compile>
     <Compile Include="AgentType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePriorityWindow.xaml.cs">
+      <DependentUpon>ChangePriorityWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CostHistoryPage.xaml.cs">
+      <DependentUpon>CostHistoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Material.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -112,7 +121,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddHistoryCostPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AgentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePriorityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CostHistoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
